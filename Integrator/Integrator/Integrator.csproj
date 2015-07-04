@@ -91,9 +91,21 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Promo.cs" />
+    <Compile Include="Models\Evento.cs" />
+    <Compile Include="Models\Promociones\Pack.cs" />
+    <Compile Include="Models\Promociones\Promo.cs" />
     <Compile Include="Models\IntegratorContext.cs" />
-    <Compile Include="Models\Stadium.cs" />
+    <Compile Include="Models\Promociones\PromoNx1.cs" />
+    <Compile Include="Models\Promociones\PromoPack.cs" />
+    <Compile Include="Models\Promociones\PromoPercen.cs" />
+    <Compile Include="Models\Socio.cs" />
+    <Compile Include="Models\Estadio\Sector.cs" />
+    <Compile Include="Models\Estadio\Tribuna.cs" />
+    <Compile Include="Models\Usuarios\Administrador.cs" />
+    <Compile Include="Models\Usuarios\Usuario.cs" />
+    <Compile Include="Models\Usuarios\Vendedor.cs" />
+    <Compile Include="Models\Ventas\Item.cs" />
+    <Compile Include="Models\Ventas\Venta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
