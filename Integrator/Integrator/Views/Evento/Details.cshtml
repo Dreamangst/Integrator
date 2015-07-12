@@ -1,0 +1,27 @@
+﻿@model Integrator.Models.Evento
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/LayoutPage.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Evento</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.fechahora)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechahora)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.eventoID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

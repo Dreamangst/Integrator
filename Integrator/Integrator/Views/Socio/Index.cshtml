@@ -1,0 +1,84 @@
+﻿@model Integrator.ViewModels.SociosIndexData
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/LayoutPage.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>Nombre</th>
+        <th>Cedula</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Socios)
+    {
+        string selectedRow = "";
+        if (item.SocioID == ViewBag.SocioID)
+        {
+            selectedRow = "success";
+        }
+        <tr class="@selectedRow">
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ci)
+            </td>
+            <td>
+                @{
+                    foreach (var prom in item.promociones){
+                        @prom.PromoID @:  @prom.nombre <br />
+                    }
+                }
+            </td>
+
+            <td>
+                @Html.ActionLink("Select", "Index", new { id = item.SocioID }) |
+                @Html.ActionLink("Edit", "Edit", new { id = item.SocioID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.SocioID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.SocioID })
+            </td>
+        </tr>
+    }
+
+</table>
+
+@if (Model.Promociones != null)
+{
+    <h3>Promociones Habilitadas para el Socio seleccionado</h3>
+    <table class="table">
+        <tr>
+            <th></th>
+            <th>Nombre</th>
+            <th>Detalles</th>
+        </tr>
+
+        @foreach (var item in Model.Promociones)
+        {
+            string selectedRow = "";
+            if (item.PromoID == ViewBag.PromoID)
+            {
+                selectedRow = "success";
+            }
+            <tr class="@selectedRow">
+                <td>
+                    @Html.ActionLink("Select", "Index", new { promoID = item.PromoID })
+                </td>
+                <td>
+                    @item.PromoID
+                </td>
+                <td>
+                    @item.nombre
+                </td>
+            </tr>
+        }
+
+    </table>
+}

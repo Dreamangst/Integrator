@@ -1,0 +1,142 @@
+﻿@model Integrator.ViewModels.PromoPackIndexData
+
+@{
+    ViewBag.Title = "PromoPacks";
+    Layout = "~/Views/Shared/LayoutPage.cshtml";
+}
+
+<h2>Promocion de Packs</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>Nombre</th>
+        <th>Pack</th>
+    </tr>
+    @foreach (var item in Model.PromoPacks)
+    {
+        string selectedRow = "";
+        if (item.PromoID == ViewBag.PromoPacksID)
+        {
+            selectedRow = "success";
+        }
+        <tr class="@selectedRow">
+            <td>
+                @Html.DisplayFor(modelItem => item.PromoID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre)
+            </td>
+
+
+            <td>
+                @Html.ActionLink("Select", "Index", new { id = item.PromoID }) |
+                @Html.ActionLink("Edit", "Edit", new { id = item.PromoID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.PromoID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.PromoID })
+            </td>
+        </tr>
+    }
+
+</table>
+
+@if (Model.Pack != null)
+{
+    <h3>Pack asociado a la promocion seleccionada</h3>
+    <table class="table">
+        <tr>
+            <th>Nmobre</th>
+            <th>Detalle</th>
+            <th>Stock</th>
+        </tr>
+        @{
+            var item = Model.Pack;
+        
+            string selectedRow = "";
+            if (item.PackID == ViewBag.PackID)
+            {
+                selectedRow = "success";
+            }
+            <tr class="@selectedRow">
+                <td>
+                    @Html.ActionLink("Select", "Index", new { PackID = item.PackID })
+                </td>
+                <td>
+                    @item.PackID
+                </td>
+                <td>
+                    @item.nombre
+                </td>
+                <td>
+                    @item.stock
+                </td>
+            </tr>
+        
+        }
+    </table>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*@model  Integrator.ViewModels.PromoPackIndexData
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/LayoutPage.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PromoPacks)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item. nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>*@
