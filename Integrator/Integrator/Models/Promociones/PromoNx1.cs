@@ -4,10 +4,15 @@ using System.Linq;
 using System.Web;
 //
 using Integrator.Models.Ventas;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace Integrator.Models.Promociones
 {
+    [Table("PromoNx1s")]
     public class PromoNx1 : Promo
     {
+        [Required]
         public int qtty { get; set; }
 
         /**

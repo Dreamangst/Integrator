@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Integrator.Models.Evento>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/LayoutPage.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.precioGeneral)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.calendario)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.precioGeneral)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.calendario)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.EventoID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.EventoID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.EventoID })
+        </td>
+    </tr>
+}
+
+</table>

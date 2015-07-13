@@ -1,0 +1,199 @@
+﻿@model Integrator.Models.Evento
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/LayoutPage.cshtml";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Evento</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.nombre, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.nombre)
+                @Html.ValidationMessageFor(model => model.nombre)
+            </div>
+        </div>
+
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.precioGeneral, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.precioGeneral)
+                @Html.ValidationMessageFor(model => model.precioGeneral)
+            </div>
+        </div>
+
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.calendario, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.calendario)
+                @Html.ValidationMessageFor(model => model.calendario)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <table>
+                    <tr>
+                        @{
+                            int cnt = 0;
+                            List<Integrator.ViewModels.AssignedPromoData> promos = ViewBag.Promos;
+                            foreach (var prom in promos){
+                                if (cnt++ % 3 == 0)
+                                {
+                                    @:</tr><tr>
+                                }
+                                @:  <td>
+                    <input type="checkbox"
+                           name="selectedPromos"
+                           value="@prom.PromoID"
+                           @(Html.Raw(prom.assigned ? "checked=\"checked\"" : "")) />
+                                    @prom.PromoID @:  @prom.nombre
+                                    @:</td>
+                            }
+                            @:</tr>
+                        }
+                </table>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <table>
+                        @{
+                        @: <tr>
+                        @: <td></td>
+                            var trib2 = ViewBag.Localidades.getTribuna("T2");
+                            var secs2 = trib2.sectores;
+                            foreach (var sec2 in secs2)
+                            {
+                                @: <td>
+                                @: <label>Sector @sec2.nombre <br>
+                                    @: <label> Total: @sec2.total </label>
+                                    <input type="checkbox" name="selectedSectors" value="@sec2.sectorID" @(Html.Raw(sec2.habilitado ? "checked=\"checked\"" : "")) />
+                                    <input type="text" name="qttySet" value="@sec2.disponible">
+                                @:</label>
+                                @: </td>
+                                if (sec2.nombre == "13")
+                                {
+                                    @: <td></td>
+                                }
+                            }
+                        @: <td></td>
+                        @: </tr>
+                        }   
+
+                        @{
+                            
+                            var trib3 = ViewBag.Localidades.getTribuna("T3");
+                            var trib4 = ViewBag.Localidades.getTribuna("T4");
+                            //var secs3 = trib3.sectores;
+                            //var secs4 = trib4.sectores;
+                            string[] arrStr3 = new string[4] { "17", "18", "20", "23"};
+                            string[] arrStr4 = new string[4] { "4", "6", "9", "10"};
+                            int n3 = 0;
+                            int n4 = 0;
+                            for (int i = 0; i <= 27; i++)
+                            {
+                                
+                                if(i % 7 == 0){
+                                    @: <tr>
+                                    @: <td>
+                                    var sec3 = trib3.getSector(arrStr3[n3]);
+                                    @: <label>Sector @sec3.nombre <br>
+                                        @: <label> Total: @sec3.total </label>
+                                        <input type="checkbox" name="selectedSectors" value="@sec3.sectorID" @(Html.Raw(sec3.habilitado ? "checked=\"checked\"" : "")) />
+                                        <input type="text" name="qttySet" value="@sec3.disponible">
+                                    @: </label>
+                                    n3 += 1;
+                                    @:</td>
+                                }
+                                else if ((i +1) % 7 == 0)
+                                {
+                                    @: <td>
+                                    var sec4 = trib4.getSector(arrStr4[n4]);
+                                    @: <label>Sector @sec4.nombre <br>
+                                        @: <label> Total: @sec4.total </label>
+                                        <input type="checkbox" name="selectedSectors" value="@sec4.sectorID" @(Html.Raw(sec4.habilitado ? "checked=\"checked\"" : "")) />
+                                        <input type="text" name="qttySet" value="@sec4.disponible">
+                                    @: </label>
+                                    n4 += 1;
+                                    @: </td>
+                                    @: </tr>
+                                }
+                                else
+                                {
+                                    @: <td>
+                                    @: </td>
+                                }
+                            }                            
+                           
+                        }    
+                        
+
+
+
+
+
+
+
+
+                        @{
+                        @: <tr>
+                        @: <td></td>
+                        @: <td></td>
+                            var trib1 = ViewBag.Localidades.getTribuna("T1");
+                            var secs1 = trib1.sectores;
+                            foreach (var sec1 in secs1)
+                            {
+                                @: <td>
+                                    @: <label> Sector @sec1.nombre <br>
+                                        @: <label> Total: @sec1.total </label>
+                                        <input type="checkbox" name="selectedSectors" value="@sec1.sectorID" @(Html.Raw(sec1.habilitado ? "checked=\"checked\"" : "")) />
+                                        <input type="text" name="qttySet" value="@sec1.disponible">
+                                        @: </label>
+                                @: </td>
+                            }
+                        @: <td></td>
+                        @: <td></td>
+                        @: </tr>
+                        }
+   
+
+                    </table>
+                </div>
+            </div>
+
+
+
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

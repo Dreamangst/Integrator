@@ -1,0 +1,35 @@
+﻿@model Integrator.Models.Promociones.PromoNx1
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/LayoutPage.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PromoNx1</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.qtty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.qtty)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PromoID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
